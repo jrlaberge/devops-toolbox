@@ -6,7 +6,6 @@ import logging
 import sys
 import json
 
-from time import sleep
 from decouple import config
 from slack_sdk import WebClient
 from slack_sdk.errors import SlackApiError
@@ -124,7 +123,7 @@ class SlackClient:
 
 if __name__ == '__main__':
     # Sample usage
-    
+
     # create slack object
     slack = SlackClient()
 
