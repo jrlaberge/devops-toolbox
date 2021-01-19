@@ -23,21 +23,6 @@ class TestSlack(unittest.TestCase):
 
         self.assertTrue(msg['ok'])
 
-    def test_update_message(self):
-        """ Test updating a message
-        """
-
-        updated = self.slack.update_message(self.channel_id, self.message_id, text='This is updated text')
-        self.assertTrue(updated['ok'])
-
-
-    def test_delete_message(self):
-        """ Test deleting a message
-        """
-
-        deleted = self.slack.delete_message(self.channel_id, self.message_id)
-        self.assertTrue(deleted['ok'])
-
 
 if __name__ == '__main__':
     unittest.main()
