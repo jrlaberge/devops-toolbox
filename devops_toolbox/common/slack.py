@@ -145,7 +145,7 @@ class SlackAdminClient(SlackClient):
         """
         try:
             response = self.client.users_list()
-            logger.info(f"User list has been generated successfully.")
+            logging.info(f"User list has been generated successfully.")
             return response
         
         except SlackApiError as e:
