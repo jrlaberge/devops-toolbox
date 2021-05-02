@@ -34,3 +34,4 @@ package-lock.json
 azurek8s
 
 .terraform
+.terraform.lock.hcl
