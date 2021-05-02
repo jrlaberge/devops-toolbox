@@ -29,3 +29,6 @@ _templates
 # javascript
 package-lock.json
 .vscode/symbols.json
+
+# k8s config files
+azurek8s
