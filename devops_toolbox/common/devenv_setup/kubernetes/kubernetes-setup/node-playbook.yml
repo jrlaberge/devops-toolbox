@@ -98,6 +98,16 @@
       line: KUBELET_EXTRA_ARGS=--node-ip={{ node_ip }}
       create: yes
 
+  - name: Delete containerd config file
+    ansible.builtin.file:
+      path: /etc/containerd/config.toml
+      state: absent
+
+  - name: Restart containerd
+    service:
+      name: containerd
+      state: restarted
+
   - name: Restart kubelet
     service:
       name: kubelet

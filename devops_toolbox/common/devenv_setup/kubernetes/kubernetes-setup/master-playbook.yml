@@ -98,6 +98,16 @@
       line: KUBELET_EXTRA_ARGS=--node-ip={{ node_ip }}
       create: yes
 
+  - name: Delete containerd config file
+    ansible.builtin.file:
+      path: /etc/containerd/config.toml
+      state: absent
+
+  - name: Restart containerd
+    service:
+      name: containerd
+      state: restarted
+
   - name: Restart kubelet
     service:
       name: kubelet
@@ -113,6 +123,14 @@
       - mkdir -p /home/vagrant/.kube
       - cp -i /etc/kubernetes/admin.conf /home/vagrant/.kube/config
       - chown vagrant:vagrant /home/vagrant/.kube/config
+
+  - name: Register kubeconfig
+    command: cat /home/vagrant/.kube/config
+    register: kube_config
+
+  - name: Copy kubeconfig to local file
+    become: false
+    local_action: copy content="{{ kube_config.stdout_lines[0] }}" dest="../config"
 
   - name: Install weave pod network
     become: false
